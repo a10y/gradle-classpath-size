@@ -10,7 +10,8 @@ import org.gradle.api.Project;
 public final class ClasspathSizePlugin implements Plugin<Project> {
     @Override
     public void apply(Project project) {
-        // project.getTasks().create(ClasspathSizeTask.TASK_NAME).setActions();
-        project.getTasks().create(ClasspathSizeTask.TASK_NAME, ClasspathSizeTask.class, project);
+        project.getPlugins().withId("java", plugin -> {
+            project.getTasks().create(ClasspathSizeTask.TASK_NAME, ClasspathSizeTask.class);
+        });
     }
 }
